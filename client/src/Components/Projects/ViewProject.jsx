@@ -9,7 +9,7 @@ export default function ViewProject(props) {
     name: "",
     description: "",
     company: "",
-    userName:"",
+    userName: "",
     team: { teamName: "", teamMembers: [] },
   });
   console.log(props.location.state);
@@ -29,7 +29,7 @@ export default function ViewProject(props) {
     };
 
     fetchData();
-  }, [setData]);
+  }, [props.location.state.name]);
   console.log(data);
   useEffect(() => {
     // if (data.team == null || team.team === undefined) {
@@ -37,7 +37,7 @@ export default function ViewProject(props) {
     // } else {
     //   setValues((state) => ({ ...state, projectTeam: data.team.teamName }));
     // }
-    
+
     if (data.team) {
       setValues((state) => ({
         ...state,
@@ -58,24 +58,24 @@ export default function ViewProject(props) {
     setValues((state) => ({ ...state, company: data.company }));
   }, [data.company]);
 
-//   useEffect(() => {
-//     setValues((state) => ({
-//       ...state,
-//       userName: data.user.userName
-//     }));
-//   }, [data.user.userName]);
+  //   useEffect(() => {
+  //     setValues((state) => ({
+  //       ...state,
+  //       userName: data.user.userName
+  //     }));
+  //   }, [data.user.userName]);
 
-//   useEffect(() => {
-//     setValues((state) => ({ ...state, team:{teamName: data.team.teamName} }));
-//   }, [data.description]);
+  //   useEffect(() => {
+  //     setValues((state) => ({ ...state, team:{teamName: data.team.teamName} }));
+  //   }, [data.description]);
 
-//   useEffect(() => {
-//     setValues((state) => ({ ...state, description: data.description }));
-//   }, [data.description]);
+  //   useEffect(() => {
+  //     setValues((state) => ({ ...state, description: data.description }));
+  //   }, [data.description]);
 
   return (
     <div>
-        <Navbar/>
+      <Navbar />
       <InspectP>
         <Styledmain>
           <Form>

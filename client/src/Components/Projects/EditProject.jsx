@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import {
   Form,
@@ -8,40 +8,25 @@ import {
   Button,
   Select,
 } from "../CreateProject/StyledCreateProject";
-import { EditProjectInput } from "./StyledProjects";
 import store from "../../index";
 import { Redirect } from "react-router";
-import { render } from "react-dom";
 import Navbar from "../Navbar/Navbar";
 export default function EditProject(props) {
-  // console.log(this.queryParams)
-  console.log(props.location.state.name);
-  //  console.log(props.match.params)
-
-  const initialFormError = {
-    isError: false,
-    message: "",
-    field: "",
-  };
-
   const user = store.getState();
-  console.log(user.userName);
-  console.log(user.password);
 
   const [data, setData] = useState({});
-  const [updated,setUpdated] = useState(false)
+  const [updated, setUpdated] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios(
+    const fetchData = () => {
+      const result = axios(
         `http://localhost:8080/project/${props.location.state.name}`
       );
-
-      setData( await result.data);
+      setData(result.data);
     };
-
     fetchData();
-  }, [setData]);
+    // eslint-disable-next-line
+  }, []);
 
   const [values, setValues] = useState({
     projectName: "",
@@ -73,11 +58,10 @@ export default function EditProject(props) {
     // } else {
     //   setValues((state) => ({ ...state, projectTeam: data.team.teamName }));
     // }
-    if(data.team){
-      setValues((state) => ({ ...state, projectTeam: data.team.teamName}))
-    }
-    else{
-      setValues((state) => ({ ...state,projectTeam: ""}))
+    if (data.team) {
+      setValues((state) => ({ ...state, projectTeam: data.team.teamName }));
+    } else {
+      setValues((state) => ({ ...state, projectTeam: "" }));
     }
   }, [data.team]);
   // useEffect(() => {
@@ -89,24 +73,24 @@ export default function EditProject(props) {
   const [deleted, isDeleted] = useState(false);
   //   setProjectDesc(data.name)
   const handleFormSubmit = (event) => {
-
-    console.log(values)
+    console.log(values);
     event.preventDefault();
-    const updatedProject = { 
-      credentials:{
-      userName: user.userName,
-      password: user.password}, 
-      project:{
+    const updatedProject = {
+      credentials: {
+        userName: user.userName,
+        password: user.password,
+      },
+      project: {
         name: values.projectName,
         description: values.projectDesc,
-        team: {teamName:values.projectTeam}
-      }
-        
-     
-    }
-    axios.patch(`http://localhost:8080/project/${props.location.state.name}`,updatedProject)
-    setUpdated(true)
-
+        team: { teamName: values.projectTeam },
+      },
+    };
+    axios.patch(
+      `http://localhost:8080/project/${props.location.state.name}`,
+      updatedProject
+    );
+    setUpdated(true);
   };
   const handleChange = (event) => {
     // use spread operator
@@ -133,8 +117,8 @@ export default function EditProject(props) {
   if (deleted) {
     return <Redirect to="/project" />;
   }
-  if(updated){
-    return<Redirect to='/project'/>;
+  if (updated) {
+    return <Redirect to="/project" />;
   }
   return (
     <div>
