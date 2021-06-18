@@ -1,8 +1,10 @@
 # cooksysfinalFE
 
 
-## Here is a quick video of the project I worked on for Cook Systems. 
-This app is designed for users to be able to keep track of the people on their team, projects a team is working on, and their profile information.
+## Here is a project I worked on for Cook Systems. 
+
+This app is designed for users be able to keep track of the people of their team, projects a team is working on, and their profile information.
+The features that I worked on include the Login page, the Users, Teams, and Profile tabs, and the logout button. 
 
 A snapshot of what I worked on for this project.
 
