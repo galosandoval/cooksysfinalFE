@@ -10,4 +10,7 @@ The features that I worked on include the Login page, the Users, Teams, and Prof
 
 
 A snapshot of what I worked on for this project.
-https://user-images.githubusercontent.com/65971577/122500591-ef86a980-cfa7-11eb-8c6c-412caed61839.mov
+
+
+https://user-images.githubusercontent.com/65971577/122500639-062d0080-cfa8-11eb-88a1-1b9255de288c.mov
+
